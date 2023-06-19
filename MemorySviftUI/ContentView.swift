@@ -8,17 +8,54 @@
 import SwiftUI
 
 struct ContentView: View {
-    let emojis = ["🦊", "🐻", "🐼", "🐷", "🦁", "🐸", "🐣", "🦆", "🦋", "🐞", "🐌", "🪰", "🐢", "🦂", "🦕", "🦊", "🐻", "🐼", "🐷", "🦁", "🐸", "🐣", "🦆", "🦋", "🐞", "🐌", "🪰", "🐢", "🦂", "🦕"]
+    private let columns = [
+        GridItem(.adaptive(minimum: 50))
+    ]
+    let emojis = ["🦊", "🐻", "🐼", "🐷", "🦁", "🐸", "🐣", "🦆", "🦋", "🐞", "🐌", "🪰", "🐢", "🦂", "🦕"]
+    
+    @State var emojiCount = 6
     
     var body: some View {
-        ScrollView {
-            Grid {
-                ForEach(0..<emojis.count) { item in
-                    CardView(content: emojis[item])
+        VStack {
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
+                        CardView(content: emoji)
+                    }
                 }
             }
+            Spacer()
+            HStack {
+                remove
+                Spacer()
+                add
+            }
             .padding(.horizontal)
+            .font(.largeTitle)
+        }
+        .padding(.horizontal)
         .foregroundColor(.orange)
+    }
+    
+    var remove: some View {
+        Button {
+            if emojiCount > 2 {
+                emojiCount -= 1
+            }
+        } label: {
+            Image(systemName: "minus.circle")
+        }
+    }
+    
+    var add: some View {
+        HStack {
+            Button {
+                if emojiCount < emojis.count {
+                    emojiCount += 1
+                }
+            } label: {
+                Image(systemName: "plus.circle")
+            }
         }
     }
 }
@@ -33,7 +70,7 @@ struct CardView: View {
             let shape = RoundedRectangle(cornerRadius: 20)
             if isFaceUp {
                 shape.stroke(lineWidth: 3)
-//                Circle().foregroundColor(.white)
+                //                Circle().foregroundColor(.white)
                 Text(content)
                     .font(.largeTitle)
             } else {
