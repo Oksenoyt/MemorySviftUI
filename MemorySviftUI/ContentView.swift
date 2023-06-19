@@ -8,19 +8,49 @@
 import SwiftUI
 
 struct ContentView: View {
+    let emojis = ["🦊", "🐻", "🐼", "🐷", "🦁", "🐸", "🐣", "🦆", "🦋", "🐞", "🐌", "🪰", "🐢", "🦂", "🦕", "🦊", "🐻", "🐼", "🐷", "🦁", "🐸", "🐣", "🦆", "🦋", "🐞", "🐌", "🪰", "🐢", "🦂", "🦕"]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ScrollView {
+            Grid {
+                ForEach(0..<emojis.count) { item in
+                    CardView(content: emojis[item])
+                }
+            }
+            .padding(.horizontal)
+        .foregroundColor(.orange)
         }
-        .padding()
     }
 }
+
+struct CardView: View {
+    var content: String
+    
+    @State var isFaceUp = true
+    
+    var body: some View {
+        ZStack {
+            let shape = RoundedRectangle(cornerRadius: 20)
+            if isFaceUp {
+                shape.stroke(lineWidth: 3)
+//                Circle().foregroundColor(.white)
+                Text(content)
+                    .font(.largeTitle)
+            } else {
+                shape.fill()
+            }
+        }
+        .onTapGesture {
+            isFaceUp.toggle()
+        }
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+
+
