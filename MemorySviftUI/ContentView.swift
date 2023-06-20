@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     private let columns = [
-        GridItem(.adaptive(minimum: 65))
+        GridItem(.adaptive(minimum: 76))
     ]
     let emojis = ["🦊", "🐻", "🐼", "🐷", "🦁", "🐸", "🐣", "🦆", "🦋", "🐞", "🐌", "🪰", "🐢", "🦂", "🦕"]
     
