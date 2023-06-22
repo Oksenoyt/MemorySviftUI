@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    var viewModel: EmojiMemoryGame
+    @ObservedObject var viewModel: EmojiMemoryGame
     
     private let columns = [
         GridItem(.adaptive(minimum: 76))
@@ -17,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ScrollView {
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(viewModel.cards) { card in
                         CardView(card: card).aspectRatio(2/3, contentMode: .fit)
                             .onTapGesture {
@@ -27,7 +27,6 @@ struct ContentView: View {
                 }
                 .foregroundColor(.orange)
             }
-//            .padding(.horizontal)
             .font(.largeTitle)
         }
         .padding(.horizontal)
@@ -41,9 +40,11 @@ struct CardView: View {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 20)
             if card.isFaceUp {
-                shape.strokeBorder(lineWidth: 3)
+                shape.strokeBorder(lineWidth: 2)
                 Text(card.content)
                     .font(.largeTitle)
+            } else if card.isMatched {
+                shape.opacity(0)
             } else {
                 shape.fill()
             }
