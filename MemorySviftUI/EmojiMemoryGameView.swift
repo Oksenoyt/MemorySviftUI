@@ -8,29 +8,34 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    @ObservedObject var viewModel: EmojiMemoryGame
+    @ObservedObject var game: EmojiMemoryGame
     
     private let columns = [
         GridItem(.adaptive(minimum: 76))
     ]
     
     var body: some View {
-        VStack {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(viewModel.cards) { card in
-                        CardView(card: card).aspectRatio(2/3, contentMode: .fit)
-                            .onTapGesture {
-                                viewModel.choose(card)
-                            }
-                    }
-                }
-                .foregroundColor(.orange)
-            }
-            .font(.largeTitle)
+        AspectVGridView(item: game.cards, aspectRatio: 2/3) { card in
+            cardView(for: card)
+
         }
+        .foregroundColor(.orange)
         .padding(.horizontal)
     }
+
+    @ViewBuilder
+    private func cardView(for card: EmojiMemoryGame.Card) -> some View {
+        if card.isMatched && !card.isFaceUp {
+            Rectangle().opacity(0)
+        } else {
+            CardView(card: card)
+                .padding(4)
+                .onTapGesture {
+                    game.choose(card)
+                }
+        }
+    }
+
 }
 
 struct CardView: View {
@@ -58,18 +63,18 @@ struct CardView: View {
     }
 
     private struct DrowingConstants {
-        static let cornerRadius: CGFloat = 20
+        static let cornerRadius: CGFloat = 10
         static let lineWidth: CGFloat = 3
-        static let fontScale: CGFloat = 0.8
+        static let fontScale: CGFloat = 0.75
     }
 }
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        EmojiMemoryGameView(game: EmojiMemoryGame())
             .preferredColorScheme(.light)
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        EmojiMemoryGameView(game: EmojiMemoryGame())
             .preferredColorScheme(.dark)
     }
 }

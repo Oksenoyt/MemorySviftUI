@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		420483FE2A4E138500522AA8 /* AspectVGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420483FD2A4E138500522AA8 /* AspectVGridView.swift */; };
 		42289D732A3FE27D00E5271C /* MemorySviftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42289D722A3FE27D00E5271C /* MemorySviftUIApp.swift */; };
 		42289D752A3FE27E00E5271C /* EmojiMemoryGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42289D742A3FE27E00E5271C /* EmojiMemoryGameView.swift */; };
 		42289D772A3FE27F00E5271C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42289D762A3FE27F00E5271C /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		420483FD2A4E138500522AA8 /* AspectVGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGridView.swift; sourceTree = "<group>"; };
 		42289D6F2A3FE27D00E5271C /* MemorySviftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemorySviftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42289D722A3FE27D00E5271C /* MemorySviftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorySviftUIApp.swift; sourceTree = "<group>"; };
 		42289D742A3FE27E00E5271C /* EmojiMemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				42ECAD5E2A4122FC00342716 /* EmojiMemoryGame.swift */,
 				42ECAD5C2A41204300342716 /* MemoryGame.swift */,
 				42289D742A3FE27E00E5271C /* EmojiMemoryGameView.swift */,
+				420483FD2A4E138500522AA8 /* AspectVGridView.swift */,
 				42289D762A3FE27F00E5271C /* Assets.xcassets */,
 				42289D782A3FE27F00E5271C /* Preview Content */,
 			);
@@ -145,6 +148,7 @@
 			files = (
 				42ECAD5D2A41204300342716 /* MemoryGame.swift in Sources */,
 				42289D752A3FE27E00E5271C /* EmojiMemoryGameView.swift in Sources */,
+				420483FE2A4E138500522AA8 /* AspectVGridView.swift in Sources */,
 				42289D732A3FE27D00E5271C /* MemorySviftUIApp.swift in Sources */,
 				42ECAD5F2A4122FC00342716 /* EmojiMemoryGame.swift in Sources */,
 			);
